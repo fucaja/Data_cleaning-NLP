@@ -20,6 +20,9 @@ def remove_hashtags(text):
     return re.sub(hashtag_pattern, '', text)
 
 
+
+
+
 # Ejemplo de uso
 texto_original = """
 Hola, mi correo es usuario@example.com. Puedes llamarme al 123 456 7890. #Python #Programacion
@@ -36,10 +39,25 @@ print("Texto limpio:", texto_limpo)
 
 
 
-patron_telefono = re.compile(
-        r'\+\d{1,4}\s?\d{1,20}|'            # Formato internacional con o sin espacios
-        r'\b\d{3}[-.\s]?\d{3}[-.\s]?\d{4}\b|'  # Formato (123) 456-7890 o 123-456-7890
-        r'\(\d{3}\) \d{3}-\d{4}|'              # Formato (123) 456-7890
-        r'\+\d{1,2} \(\d{3}\) \d{3}-\d{4}|'    # Formato +1 (123) 456-7890
-        r'\+\d{1,2}-\d{1,4}-\d{1,4}-\d{1,4}'    # Otros formatos posibles
+
+import re
+
+def remove_urls(text):
+    # Patrón para eliminar diferentes tipos de URL
+    url_pattern = re.compile(
+        r'(http[s]?://)?([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(:\d+)?(/[^\s]*)?'
+        r'|www\.[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(:\d+)?(/[^\s]*)?'
+        r'|ftp://[^\s]+'
+        r'|feed://[^\s]+'
+        r'|file://[^\s]+'
     )
+    return re.sub(url_pattern, '', text)
+
+
+texto_original = """http://www.ejemplo.com
+https://www.ejemplo.com
+ftp://ftp.ejemplo.com:
+ftp://anonymous:contraseña@ftp.ejemplo.com
+file:///ruta/al/archivo.txt
+feed://www.ejemplo.com/feed.xml"""
+print("Validando urls: ",remove_urls(texto_original))
