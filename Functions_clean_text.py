@@ -45,11 +45,11 @@ import re
 def remove_urls(text):
     # Patrón para eliminar diferentes tipos de URL
     url_pattern = re.compile(
-        r'(http[s]?://)?([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(:\d+)?(/[^\s]*)?'
-        r'|www\.[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(:\d+)?(/[^\s]*)?'
-        r'|ftp://[^\s]+'
-        r'|feed://[^\s]+'
-        r'|file://[^\s]+'
+        r'(http[s]?://)?([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(:\d+)?(/[^\s]*)?|'
+        r'www\.[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(:\d+)?(/[^\s]*)?|'
+        r'ftp://[^\s]+|'
+        r'feed://[^\s]+|'
+        r'file://[^\s]+|'
     )
     return re.sub(url_pattern, '', text)
 
